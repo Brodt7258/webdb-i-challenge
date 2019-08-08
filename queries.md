@@ -8,7 +8,7 @@ SELECT * FROM Suppliers WHERE SupplierId == 11;
 
 
 ## List first 10 orders ever places, descending by the order date
-SELECT * FROM Orders ORDER BY OrderDate LIMIT 10;
+SELECT * FROM Orders ORDER BY OrderDate DESC LIMIT 10;
 
 ## Find all customers that live in London, Madrid, or Brazil
 SELECT * FROM Customers WHERE City == "London" OR City == "Madrid" OR Country == "Brazil";
