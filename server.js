@@ -32,12 +32,37 @@ server.post('/', async (req, res) => {
   try {
     const [ id ] = await db('accounts')
       .insert(req.body);
-    console.log(id);
     const account = await db('accounts')
       .where({ id })
       .first();
-    console.log(account);
+
     res.status(201).json(account);
+  } catch(err) {
+    res.status(500).json(err);
+  }
+});
+
+server.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updated = await db('accounts')
+      .where({ id })
+      .update(req.body);
+
+    res.status(200).json(updated);
+  } catch(err) {
+    res.status(500).json(err);
+  }
+});
+
+server.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await db('accounts')
+      .where({ id })
+      .del();
+      
+    res.status(204).end();
   } catch(err) {
     res.status(500).json(err);
   }
